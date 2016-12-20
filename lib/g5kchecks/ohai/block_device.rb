@@ -23,8 +23,8 @@ end
 #
 
 block_device.select { |key,value| key =~ /[sh]d.*/ and value["model"] != "vmDisk" }.each { |k,v|
-  v['device_by_id'] = execute2("find /dev/disk/by-id/ -lname '*#{k}' | grep '/wwn-'") rescue nil
-  v['device_by_path'] = execute2("find /dev/disk/by-path/ -lname '*#{k}' | grep '/pci-'") rescue nil
+  v['by_id'] = execute2("find /dev/disk/by-id/ -lname '*#{k}' | grep '/wwn-'") rescue nil
+  v['by_path'] = execute2("find /dev/disk/by-path/ -lname '*#{k}' | grep '/pci-'") rescue nil
   v['rev_from_hdparm'] = execute2("hdparm -I /dev/#{k}").grep(/Firmware Revision:/)[0].sub("Firmware Revision:", "").strip rescue nil
   v['rev_from_hdparm'] = v['rev_from_hdparm'].ascii_only? ? v['rev_from_param'] : nil rescue nil # bug fix granduc@lux
 }

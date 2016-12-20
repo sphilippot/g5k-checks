@@ -18,18 +18,18 @@ describe "Disk" do
     end
 
     it "should have the correct device id" do
-      device_by_id_ohai = v['device_by_id']
-      device_by_id_api = ''
-      device_by_id_api = @api[k]['device_by_id'] if (@api and @api[k] and @api[k]['device_by_id'])
-      device_by_id_ohai.should eql(device_by_id_api), "#{device_by_id_ohai}, #{device_by_id_api}, storage_devices, #{k}, device_by_id"
+      by_id_ohai = v['by_id']
+      by_id_api = ''
+      by_id_api = @api[k]['by_id'] if (@api and @api[k] and @api[k]['by_id'])
+      by_id_ohai.should eql(by_id_api), "#{by_id_ohai}, #{by_id_api}, storage_devices, #{k}, by_id"
     end
 
     it "should have the correct device path" do
-      device_by_path_ohai = ''
-      device_by_path_ohai = v['device_by_path'] if v.key?('device_by_path') && v['device_by_path'] != nil
-      device_by_path_api = ''
-      device_by_path_api = @api[k]['device_by_path'] if (@api and @api[k] and @api[k]['device_by_path'])
-      device_by_path_ohai.should eql(device_by_path_api), "#{device_by_path_ohai}, #{device_by_path_api}, storage_devices, #{k}, device_by_path"
+      by_path_ohai = ''
+      by_path_ohai = v['by_path'] if v.key?('by_path') && v['by_path'] != nil
+      by_path_api = ''
+      by_path_api = @api[k]['by_path'] if (@api and @api[k] and @api[k]['by_path'])
+      by_path_ohai.should eql(by_path_api), "#{by_path_ohai}, #{by_path_api}, storage_devices, #{k}, by_path"
     end
 
     it "should have the correct size" do
