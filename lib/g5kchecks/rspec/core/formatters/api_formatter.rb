@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'rspec/core/formatters/base_text_formatter'
 require 'g5kchecks/utils/utils'
 require 'yaml'
@@ -36,10 +37,10 @@ module RSpec
         end
 
         def close
-          File.open(File.join("/tmp/",RSpec.configuration.node.hostname + ".yaml"), 'w' ) { |f|
+          File.open(File.join("/tmp/", RSpec.configuration.node.node_uid + ".yaml"), 'w') { |f|
             f.puts @yaml_hash.to_yaml
           }
-          File.open(File.join("/tmp/",RSpec.configuration.node.hostname + ".json"), 'w' ) { |f|
+          File.open(File.join("/tmp/", RSpec.configuration.node.node_uid + ".json"), 'w') { |f|
             f.puts @yaml_hash.to_json
           }
         end
