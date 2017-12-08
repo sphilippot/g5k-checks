@@ -85,8 +85,11 @@ describe "Network" do
     it "should have the correct Rate" do
       rate_api = @api[dev]['rate'].to_i rescue 0
       rate_ohai = iface[:rate].to_i rescue 0
-      Utils.test(rate_ohai, rate_api, "network_adapters/#{dev}/rate") do |v_ohai, v_api, error_msg|
-        expect(v_ohai).to eql(v_api), error_msg
+      # dirty hack to avoid generating rate items when it is 0
+      if not (rate_ohai == 0 and rate_api == 0)
+        Utils.test(rate_ohai, rate_api, "network_adapters/#{dev}/rate") do |v_ohai, v_api, error_msg|
+          expect(v_ohai).to eql(v_api), error_msg
+        end
       end
     end
 
